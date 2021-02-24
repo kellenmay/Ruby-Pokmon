@@ -12,4 +12,4 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'faker'
-
+gem 'sinatra-flash'
