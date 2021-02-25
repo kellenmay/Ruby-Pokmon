@@ -9,6 +9,8 @@ class UsersController < ApplicationController
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             redirect to "/users/#{@user.id}"
+            # "/pokemons"
+            # "/users/#{@user.id}"
         else
             redirect '/login'
         end
@@ -24,7 +26,7 @@ class UsersController < ApplicationController
         user_email = User.find_by(email: params[:email])
 
         if params[:name].blank?  || params[:email].blank? || params[:password].blank?
-            flash[:message] = "Please fill out all fields"
+            flash[:message] = "Seems like you left something blank"
             redirect '/signup'
         elsif user || user_email
             flash[:message] = "This account already exists!"
@@ -43,7 +45,8 @@ class UsersController < ApplicationController
 
         @user = User.find_by(id: params[:id])
         if !@user.nil? && @user == current_user
-            erb :'users/show'
+            erb :"/users/show"
+
         else
             redirect '/login'
         end

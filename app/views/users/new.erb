@@ -3,11 +3,13 @@
 <label>Name: </label>
 <input type="text" name="name"><br>
 <label>Email: </label>
-<input type="text" name="username"><br>
+<input type="text" name="email"><br>
 <label>Password: </label>
 <input type="password" name="password"><br>
 <input type="submit">
 </form>
+
+<% binding.pry %>
 <% if flash.has?(:message) %>
     <%= flash[:message] %>
 <% end %>
