@@ -69,6 +69,7 @@ class UsersController < ApplicationController
     end
 
     patch '/users/:id' do 
+      
         
         params[:user][:pokemon].each do |id|
             if !current_user.pokemons.include?(Pokemon.find_by(id: id))
