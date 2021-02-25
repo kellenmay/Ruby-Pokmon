@@ -1,59 +1,47 @@
 class UsersController < ApplicationController
 
-    # responsible for anything involving our user
+    get '/login' do 
+        erb :'users/login'
+    end
 
-    get '/signup' do # render signup form
-        erb :"UsersController/signup"
-    end 
-
-    post '/signup' do # process the signup form
-        # receive data from the form inside of params hash
-        # create a new user object with the data
-        user = User.new(params)
-        # validate our user object
-        # if user.email != ""
-        if user.email.blank? || user.email.blank? || user.name.blank? || user.password.blank? || user.find_by_email(params[:email]) || User.find_by_email(params[:email])
-            redirect '/signup'
-        else 
-            user.save
-            session[:author_id] = user.id # logging user in
-            redirect '/pokemons'
-        end 
-    end 
-
-
-    # login '/login' read => querying our user and reading UsersController attributes
-
-    get '/login' do # render the login form
-        erb :"users/login"
-    end 
-
-    post '/login' do # process the login form
-        # gather data from the form => params
-        # find my user object
+    post '/login' do 
         @user = User.find_by(email: params[:email])
-        # binding.pry
-        # if user exists && password is correct
         if @user && @user.authenticate(params[:password])
-            # login user
             session[:user_id] = @user.id
-            # redirect 
-            redirect "/users/#{@user.name}"
-        else 
-            # flash[]
-            # flash[:error] = "Invalid login"
-            # invalid login
+            redirect to "/users/#{@user.id}"
+        else
             redirect '/login'
-        end 
-    end 
+        end
+        
+    end
 
-    get '/users/:name' do 
+    get '/signup' do 
+        erb :'users/new'
+    end
+
+    post '/signup' do 
+        user = User.find_by(name: params[:name])
+        user_email = User.find_by(email: params[:email])
+
+        if params[:name].blank?  || params[:email].blank? || params[:password].blank?
+            flash[:message] = "Please fill out all fields"
+            redirect '/signup'
+        elsif user || user_email
+            flash[:message] = "This account already exists!"
+            redirect '/signup'
+        else
+            new_user = User.new(name: params[:name], email: params[:email], password: params[:password])
+            new_user.save
+            redirect '/login'
+        end
+    end
+
+    get '/users/:id' do 
         if !logged_in?
             redirect '/login'
         end
 
-        
-        @user = User.find_by(name: params[:name])
+        @user = User.find_by(id: params[:id])
         if !@user.nil? && @user == current_user
             erb :'users/show'
         else
@@ -62,12 +50,41 @@ class UsersController < ApplicationController
 
     end
 
+    get '/logout' do 
+        logout 
+        redirect '/'
+    end
 
-    #clears session hash 
-    get '/logout' do
-        session.clear
-        redirect '/login'
-    end 
+    get '/users/:id/edit' do 
+        @user = User.find_by(id: params[:id])
 
-    
-end 
+        if logged_in? && current_user.id == @user.id
+            erb :'users/edit'
+        else
+            redirect '/login'
+        end
+    end
+
+    patch '/users/:id' do 
+        
+        params[:user][:pokemon].each do |id|
+            if !current_user.pokemons.include?(Pokemon.find_by(id: id))
+                current_user.pokemons << Pokemon.find_by(id: id)
+            end
+        end
+        redirect "/users/#{current_user.id}"
+    end
+
+private 
+
+    def redirect_if_not_authorized
+        if @pokemon.creator_id != current_user.id 
+            flash[:message] = "You can't edit a post you haven't created"
+            redirect '/pokemons'
+        end
+    end
+
+
+
+
+end

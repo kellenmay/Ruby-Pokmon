@@ -1,0 +1,8 @@
+<form action="/users/<%=@user.id%>" method="POST">
+<input type="hidden" name="_method" value="patch">
+<label>Add Pokemon to Collection</label>
+<br>
+<% Pokemon.all.each do |p| %>
+    <input type="checkbox" name="user[pokemons][]" id="<%=p.id%>" value="<%=p.id%>" <%='checked' if @user.pokemon.include?(p) %>><%= p.name %><br><%end%>
+<input type="submit" value="Update collection">
+</form>

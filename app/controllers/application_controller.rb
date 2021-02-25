@@ -1,33 +1,33 @@
+require './config/environment'
+require 'rack-flash'
+
 class ApplicationController < Sinatra::Base
+  use Rack::Flash
+
+  configure do
+    set :public_folder, 'public'
+    set :views, 'app/views'
+    enable :sessions
+    set :session_secret, 'secret'
+  end
+
+  get "/" do
+    erb :index
+  end
+
+  helpers do 
     
-  configure do 
-      # set sessions
-      set :views, 'app/views'
-      enable :sessions 
-      set :session_secret, "secret"
-      register Sinatra::Flash
-  end 
-
-  # define general routes
-  # any route/request that doesnt involve a model 
-  get '/' do 
-    erb :welcome
-  end 
-
-  helpers do
-
-   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
-   end 
-
-
     def logged_in?
-      !!session[:user_id]
-    end 
+      !!current_user
+    end
+    
+    def current_user 
+      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    end
 
-  end 
+    def logout
+      session.clear
+    end
+  end
 
-  # about route
-  # contact page
-
-end 
+end
