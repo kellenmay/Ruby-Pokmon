@@ -9,7 +9,12 @@
 <input type="submit">
 </form>
 
-<% binding.pry %>
-<% if flash.has?(:message) %>
-    <%= flash[:message] %>
-<% end %>
+<% flash.keys.each do |type| %>
+    <div data-alert class="flash <%= type %> alert-box radius">
+      <%= flash[type] %>
+      <a href="/signup" class="close">Try Again?</a>
+    </div>
+  <% end %>
+  
+      
+  

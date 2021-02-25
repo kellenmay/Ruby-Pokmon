@@ -13,5 +13,4 @@ gem 'bcrypt'
 gem 'tux'
 gem 'faker'
 gem 'sinatra-flash'
-gem 'rack-flash3'
-gem 'sinatra-flash'
+

@@ -18,6 +18,7 @@ class PokemonsController < ApplicationController
        get '/pokemons/:id' do 
           get_pokemon
            erb :'pokemons/show'
+       end
 
 
        post '/pokemons' do 
@@ -62,10 +63,10 @@ class PokemonsController < ApplicationController
    
        def redirect_if_not_userized
            if @pokemon.user != current_user
-               flash[:error] = "You cant make this edit, you don't own this"
+               flash[:error] = "Hey! These aren't yours!"
                redirect '/pokemons'
            end 
    
        end 
    
-   end 
+end

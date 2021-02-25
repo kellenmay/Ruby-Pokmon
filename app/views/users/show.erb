@@ -1,5 +1,6 @@
-<h2><%=@pokemon.name%></h2><br>
-Name: <%=@pokemon.name%><br>
-Move: <%=@pokemon.move%><br>
-Location: <%=@pokemon.location%><br>
-<br>
+<% @user.pokemons.each do |p| %>
+    <p>
+    <h3><%= p.name %></h3>
+    <a href="pokemons/<%=p.id%>">View</a>
+    </p>
+<%end%>

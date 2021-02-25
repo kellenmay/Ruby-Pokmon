@@ -1,5 +1,5 @@
 require './config/environment'
-require 'rack-flash'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
   
@@ -7,8 +7,7 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    use Rack::Flash
-    use Sinatra::Flash
+    register Sinatra::Flash
     enable :sessions
     set :session_secret, 'secret'
   end
