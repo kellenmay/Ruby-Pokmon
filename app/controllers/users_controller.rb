@@ -68,16 +68,29 @@ class UsersController < ApplicationController
         end
     end
 
-    patch '/users/:id' do 
-      
-        
-        params[:user][:pokemon].each do |id|
-            if !current_user.pokemons.include?(Pokemon.find_by(id: id))
-                current_user.pokemons << Pokemon.find_by(id: id)
-            end
+    # patch '/users/:id' do         
+    #     params[:user][:pokemon].each do |id|
+    #         if !current_user.pokemons.include?(Pokemon.find_by(id: id))
+    #             current_user.pokemons << Pokemon.find_by(id: id)
+    #         end
+    #     end
+    #     redirect "/users/#{current_user.id}"
+    # end
+
+    patch "/users/:id" do
+        @user = User.find_by(id: params[:id])
+        @pokemons = params["pokemon.ids"]
+          if @pokemons.nil? && @user != current_user
+            redirect "/users/#{current_user.id}" 
+          else
+            @user.pokemons = []
+            params["pokemon.ids"].each do |id| 
+            p = Pokemon.find(id)
+            current_user.pokemons << p
+          end 
+          redirect "/users/#{current_user.id}" 
         end
-        redirect "/users/#{current_user.id}"
-    end
+      end 
 
 private 
 

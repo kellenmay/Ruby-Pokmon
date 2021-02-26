@@ -13,16 +13,10 @@ class PokemonsController < ApplicationController
             erb :'pokemons/new'
         end
        end 
-
-
-       get '/pokemons/:id' do 
-          get_pokemon
-           erb :'pokemons/show'
-       end
-
-
+       
        post '/pokemons' do 
-           # create the new pokemon
+           binding.pry
+            # create the new pokemon
            # redirect our user somewhere 
        
            #don't use create
@@ -32,12 +26,19 @@ class PokemonsController < ApplicationController
 
            redirect "/pokemons/#{@pokemon.id}" 
        end 
+
+       get '/pokemons/:id' do 
+          get_pokemon
+           erb :'pokemons/show'
+       end
+
+
    
 
        get '/pokemons/:id/edit' do 
            get_pokemon
            redirect_if_not_userized
-           erb :"/pokemons/edit"
+           erb :'pokemons/edit'
        end 
    
 

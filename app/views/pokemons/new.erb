@@ -1,9 +1,9 @@
-responsible for rendering the pokemon form
+Your favorite Pokemon not on the list? Create them down below!
 
-
-<form action="/pokemons" method="pokemon">
-    Name: <input type="text" name="name">
-    Move: <textarea name="move"></textarea>
-    Location <textarea name="location"></textarea>
+<form action="/pokemons" method="post">
+    Name: <input type="text" name="pokemon[name]"><br>
+    Move: <input type="move" name="pokemon[move]"><br>
+    Location: <input type="location" name="pokemon[location]"><br>
     <input type="submit" value="Create Pokemon">
 </form>
+

@@ -1,7 +1,12 @@
-<form action="/pokemons/<%= @pokemon.id %>" method="pokemon">
+<form action="/pokemons/<%= @pokemon.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
     Name: <input type="text" name="name" value="<%= @pokemon.name %>">
     Move: <input type="text" name="move" value="<%= @pokemon.move %>">
     Location: <input type="text" name="location" value="<%= @pokemon.location %>">
     <input type="submit" value="Edit pokemon">
+</form>
+
+<form action="/pokemons/<%=@pokemon.id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="delete">
 </form>

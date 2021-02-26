@@ -1,6 +1,5 @@
-<% @user.pokemons.each do |p| %>
-    <p>
-    <h3><%= p.name %></h3>
-    <a href="pokemons/<%=p.id%>">View</a>
-    </p>
-<%end%>
+<h1> <%= @user.name%> </h1>
+<p1> Current Pokedex: </p1>
+    <% @user.pokemons.each do |p| %>
+        <h3><%= p.name %></h3>
+    <% end %> <br>
