@@ -1,10 +1,10 @@
-Would you like to <a href="/pokemons/new"> Add a new Pokemon </a>
+Would you like to <a href="/pokemons/new"> <input type="submit" value="Add"></a> new Pokemon?
 
 
 <% @pokemons.each do |p| %>
     <p>
     <h3><%= p.name %></h3>
-    <a href="pokemons/<%=p.id%>">View</a>
+    <a href="pokemons/<%=p.id%>"><input type="submit" value="View"></a>
     </p>
 <%end%>
 

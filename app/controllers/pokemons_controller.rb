@@ -38,7 +38,7 @@ class PokemonsController < ApplicationController
        get '/pokemons/:id/edit' do 
            get_pokemon
            redirect_if_not_userized
-        #    erb :'pokemons/edit'
+            erb :'pokemons/edit'
        end 
    
 

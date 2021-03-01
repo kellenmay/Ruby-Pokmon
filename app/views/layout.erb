@@ -20,21 +20,20 @@
   
     <div class="wrapper">
       <header>
-      Welcome to the <a href="/pokemons">Pokedex</a><br>
+      Welcome to the <a href="/pokemons"><input type="submit" value="Pokedex"></a><br>
       <br>
       <%if logged_in?%>
-        <a href="/users/<%=current_user.id%>">Your Collection</a><br>
+        <a href="/users/<%=current_user.id%>"><input type="submit" value="Your Collection"></a><br><br>
       <%end%>
-        <%if logged_in?%>
-          <a href="/logout">Logout</a><br><br>
-        <%end%>
+
+
       </header>
 
         <%= yield %>
       
       <footer class="branding">
         <%if logged_in?%>
-          <a href="/logout">Logout</a><br><br>
+          <a href="/logout"><input type="submit" value="Logout"></a><br><br>
         <%end%>
         <small>&copy; 2021 <strong>Your Pokedex</strong></small>
       </footer>

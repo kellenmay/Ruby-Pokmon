@@ -28,7 +28,7 @@ class UsersController < ApplicationController
         if params[:name].blank?  || params[:email].blank? || params[:password].blank?
             flash[:message] = "Seems like you left something blank"
             redirect '/signup'
-        elsif user || user_email
+        elsif  user_email
             flash[:message] = "This account already exists!"
             redirect '/signup'
         else
@@ -57,6 +57,9 @@ class UsersController < ApplicationController
         logout 
         redirect '/'
     end
+
+  
+
 
     get '/users/:id/edit' do 
         @user = User.find_by(id: params[:id])
@@ -96,6 +99,7 @@ private
     def user_id
         user = User.find_by(name: params[:name])
     end
+
 
 
 

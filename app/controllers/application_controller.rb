@@ -29,6 +29,12 @@ class ApplicationController < Sinatra::Base
     def logout
       session.clear
     end
+
+    delete '/users/105' do
+        current_user.destroy
+        redirect '/'
+    end
+
   end
 
 end
