@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
       session.clear
     end
 
-    delete '/users/105' do
+    delete '/users/:id' do
         current_user.destroy
         redirect '/'
     end
