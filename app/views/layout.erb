@@ -7,19 +7,36 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-    <title>SinatraProject</title>
+    <title>Gotta Catch 'em All</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+
+    
+    
+  
     <div class="wrapper">
+      <header>
+      Welcome to the <a href="/pokemons">Pokedex</a><br>
+      <br>
+      <%if logged_in?%>
+        <a href="/users/<%=current_user.id%>">Your Collection</a><br>
+      <%end%>
+        <%if logged_in?%>
+          <a href="/logout">Logout</a><br><br>
+        <%end%>
+      </header>
 
         <%= yield %>
-
+      
       <footer class="branding">
-        <small>&copy; 2021 <strong>SinatraPorject</strong></small>
+        <%if logged_in?%>
+          <a href="/logout">Logout</a><br><br>
+        <%end%>
+        <small>&copy; 2021 <strong>Your Pokedex</strong></small>
       </footer>
     </div>
 
@@ -28,14 +45,5 @@
       <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
-
-
-<% flash.keys.each do |type| %>
-    <div data-alert class="flash <%= type %> alert-box radius">
-      <%= flash[type] %>
-      <a href="/signup" class="close">Try Again?</a>
-    </div>
-  <% end %>
-
   </body>
 </html>

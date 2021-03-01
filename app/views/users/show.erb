@@ -1,5 +1,12 @@
 <h1> <%= @user.name%> </h1>
+
+ Would you like to <a href="/users/<%=@user.id%>/edit"> Edit </a>your Pokemon?
+
 <p1> Current Pokedex: </p1>
     <% @user.pokemons.each do |p| %>
         <h3><%= p.name %></h3>
+
     <% end %> <br>
+
+
+

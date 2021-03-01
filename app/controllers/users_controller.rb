@@ -60,7 +60,6 @@ class UsersController < ApplicationController
 
     get '/users/:id/edit' do 
         @user = User.find_by(id: params[:id])
-
         if logged_in? && current_user.id == @user.id
             erb :'users/edit'
         else
@@ -68,14 +67,7 @@ class UsersController < ApplicationController
         end
     end
 
-    # patch '/users/:id' do         
-    #     params[:user][:pokemon].each do |id|
-    #         if !current_user.pokemons.include?(Pokemon.find_by(id: id))
-    #             current_user.pokemons << Pokemon.find_by(id: id)
-    #         end
-    #     end
-    #     redirect "/users/#{current_user.id}"
-    # end
+
 
     patch "/users/:id" do
         @user = User.find_by(id: params[:id])
@@ -83,10 +75,10 @@ class UsersController < ApplicationController
           if @pokemons.nil? && @user != current_user
             redirect "/users/#{current_user.id}" 
           else
-            @user.pokemons = []
-            params["pokemon.ids"].each do |id| 
-            p = Pokemon.find(id)
-            current_user.pokemons << p
+            params[:user][:pokemons_ids].each do |id|
+                if !@user.pokemons.include?(Pokemon.find_by(id: id))
+                    @user.pokemons << Pokemon.find_by(id: id)
+                end
           end 
           redirect "/users/#{current_user.id}" 
         end
@@ -100,7 +92,10 @@ private
             redirect '/pokemons'
         end
     end
-
+    
+    def user_id
+        user = User.find_by(name: params[:name])
+    end
 
 
 
