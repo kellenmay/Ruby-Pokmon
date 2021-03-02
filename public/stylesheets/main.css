@@ -1,26 +1,89 @@
 @media screen {
-  /* --- Reset Styles --- */
-  * {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+
+#alert {
+  padding: 20px;
+  background-color: #f44336; 
+  color: white;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+  img {
+    object-fit: contain; 
+    vertical-align: middle;
+    width: 100%;
+    margin:10px 10px;
   }
 
-  html, body {
-    height: 100%;
-    width: 100%;
+  a {
+    border: 2px #006600;
+    border-style: double;
+    text-decoration: none;
+    background-color: #f2e6ff;
+    padding: 3px;
+    font-family: 'Georgia';
+    font-size: 14px;
+  }
+
+  a:hover {
+    cursor: pointer;
+    background-color: #d1d1e0;
+  }
+
+  .user-links{
+    text-align: center;
+  }
+
+  .bg-name{
+    text-align: center;
+    font-style: oblique;
+    border-bottom: 2px solid #ccc;
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .welcome-page{  
+    text-align: center;
+    font-size: 22px;
+    line-height: 22px;
+  }
+
+  header {
+    width: 1000 px
+  }
+
+  header a {
+    float: left;
+    text-align: center;
+    width: 22%;
+
   }
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
+    background-color: #00ffbf;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
   }
 
   .wrapper {
-    background: #fff;
+    background: #a83f97;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -31,8 +94,11 @@
   }
 
   h1 {
+    border-bottom: 2px solid #ccc;
     font-size: 36px;
     line-height: 54px;
+    text-shadow: 1px 1px #555;
+    text-align: center;
   }
 
   h2 {
@@ -43,6 +109,7 @@
   }
 
   h3 {
+    border-bottom: 2px solid #ccc;
     font-size: 18px;
     line-height: 36px;
   }
@@ -81,35 +148,11 @@
     margin-top: 20px;
     padding-top: 20px;
   }
+
+  .index{
+  background: rgb(179, 144, 180);
+  text-align: center;
+  font-size: 22px;
+  line-height: 22px;
 }
-
-@media screen and (max-width: 600px) {
-  .wrapper {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    width: auto;
-  }
-
-  .content, .sidebar {
-    float: none;
-    width: 100%;
-  }
-
-  .sidebar {
-    background: transparent;
-    border: none;
-    border-top: 2px solid #ccc;
-    padding: 0;
-  }
-
-  h1 {
-    font-size: 24px;
-    line-height: 36px;
-  }
-
-  h2 {
-    font-size: 18px;
-    line-height: 24px;
-  }
 }

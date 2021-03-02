@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
@@ -11,8 +12,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <link rel="stylesheet" href="/stylesheets/new.css" />
   </head>
+
+
+
   <body>
 
     
@@ -20,10 +24,10 @@
   
     <div class="wrapper">
       <header>
-      Welcome to the <a href="/pokemons"><input type="submit" value="Pokedex"></a><br>
+      <br>Welcome to the Pokemon log click here to see a <a href="/pokemons"><input type="submit" value="running list"></a><br>
       <br>
       <%if logged_in?%>
-        <a href="/users/<%=current_user.id%>"><input type="submit" value="Your Collection"></a><br><br>
+        <a href="/users/<%=current_user.id%>"><img src="https://www.pngfind.com/pngs/m/255-2554477_pokeball-small-pokeball-cross-stitch-hd-png-download.png"><input type="submit" value="Your Pokedex"></a><br><br>
       <%end%>
 
 
@@ -33,7 +37,7 @@
       
       <footer class="branding">
         <%if logged_in?%>
-          <a href="/logout"><input type="submit" value="Logout"></a><br><br>
+          <a href="/logout"><input type="submit" value="Logout"></a>
         <%end%>
         <small>&copy; 2021 <strong>Your Pokedex</strong></small>
       </footer>
