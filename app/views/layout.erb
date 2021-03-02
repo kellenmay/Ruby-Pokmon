@@ -12,7 +12,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/stylesheets/new.css" />
+    <link rel="stylesheet" href="/stylesheets/new.css"/>
+    
   </head>
 
 
@@ -24,24 +25,26 @@
   
     <div class="wrapper">
       <header>
-      <br>Welcome to the Pokemon log click here to see a <a href="/pokemons"><input type="submit" value="running list"></a><br>
+      <br>Welcome Trainer! Click <a href="/pokemons"><input type="submit" value="here"></a> for the current Pokedex<br>
       <br>
+   
       <%if logged_in?%>
-        <a href="/users/<%=current_user.id%>"><img src="https://www.pngfind.com/pngs/m/255-2554477_pokeball-small-pokeball-cross-stitch-hd-png-download.png"><input type="submit" value="Your Pokedex"></a><br><br>
+        If you want to see your current pokedex click <a href="/users/<%=current_user.id%>"><input type="submit" value="here"></a><br><br>
       <%end%>
+              <%if logged_in?%>
+          <a href="/logout"><input type="submit" value="Logout"></a>
+        <%end%>
+         </header>
 
-
-      </header>
 
         <%= yield %>
       
-      <footer class="branding">
-        <%if logged_in?%>
-          <a href="/logout"><input type="submit" value="Logout"></a>
-        <%end%>
-        <small>&copy; 2021 <strong>Your Pokedex</strong></small>
-      </footer>
+      
     </div>
+
+
+
+</div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <!--[if lt IE 7]>

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_153720) do
+ActiveRecord::Schema.define(version: 2021_03_02_153519) do
+
+  create_table "newpokemons", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "move"
+    t.integer "user_id"
+    t.integer "pokemon_id"
+    t.index ["pokemon_id"], name: "index_newpokemons_on_pokemon_id"
+    t.index ["user_id"], name: "index_newpokemons_on_user_id"
+  end
 
   create_table "pokemons", force: :cascade do |t|
     t.string "name"

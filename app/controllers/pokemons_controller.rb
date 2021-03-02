@@ -15,10 +15,6 @@ class PokemonsController < ApplicationController
        end 
        
        post '/pokemons' do 
-
-            # create the new pokemon
-           # redirect our user somewhere 
-       
            #don't use create
            @pokemon = Pokemon.new(params[:pokemon])
            @pokemon.user_id = session[:user_id]
@@ -32,9 +28,6 @@ class PokemonsController < ApplicationController
            erb :'pokemons/show'
        end
 
-
-   
-
        get '/pokemons/:id/edit' do 
            get_pokemon
            redirect_if_not_userized
@@ -45,7 +38,7 @@ class PokemonsController < ApplicationController
        patch '/pokemons/:id' do 
            get_pokemon
            redirect_if_not_userized
-           @pokemon.update(title: params[:title], content: params[:content])
+           @pokemon.update(name: params[:name], move: params[:move], location: params[:location])
            redirect "/pokemons/#{@pokemon.id}" 
        end 
    
@@ -63,9 +56,9 @@ class PokemonsController < ApplicationController
        end 
    
        def redirect_if_not_userized
-           if @pokemon.user != current_user
+           if @pokemon.user_id != current_user.id
                flash[:error] = "Hey! These aren't yours!"
-               redirect '/pokemons'
+            redirect '/pokemons'
            end 
    
        end 
