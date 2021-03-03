@@ -17,10 +17,3 @@ end
 
 end
 
-
-
-# response = RestClient.get('https://pokeapi.co/api/v2/pokemon?limit=251')
-#  pokemon_name = JSON.parse(response)
-#     pokemon_name.each do |name|
-#         Name.new(name["name"])
-# end
