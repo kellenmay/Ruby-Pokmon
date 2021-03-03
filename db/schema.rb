@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_153519) do
+ActiveRecord::Schema.define(version: 2021_03_02_184213) do
+
 
   create_table "newpokemons", force: :cascade do |t|
     t.string "name"
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_153519) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.text "pokemon"
   end
 
 end
