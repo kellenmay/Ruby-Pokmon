@@ -1,14 +1,16 @@
 <br>
 
-Would you like to <a href="/pokemons/new"> <input type="submit" value="Add"></a> new Pokemon?
+<h1>Click here to <a href="/pokemons/new"> <input type="submit" value="Add"></a> new Pokemon!</h1><br><br>
 
-
+<body>
+<div class="pokemonlist">
 <% @pokemons.each do |p| %>
     <p>
-    <h3><%= p.name %></h3>
-    <a href="pokemons/<%=p.id%>"><input type="submit" value="View"></a>
+    <%= p.name%><a href="pokemons/<%=p.id%>"><input type="submit" value="View"></a>
     </p>
 <%end%>
+</div>
+</body>
 
 
 

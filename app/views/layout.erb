@@ -12,47 +12,36 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/stylesheets/new.css"/>
-    
+    <link rel="stylesheet" href="/stylesheets/new.css"/>  
   </head>
 
-
-
   <body>
-
-    
-    
-  
+ 
     <div class="wrapper">
       <header>
       <br>Welcome Trainer! Click <a href="/pokemons"><input type="submit" value="here"></a> for the current Pokedex<br>
       <br>
-   
-      <%if logged_in?%>
-        If you want to see your current pokedex click <a href="/users/<%=current_user.id%>"><input type="submit" value="here"></a><br><br>
-      <%end%>
-              <%if logged_in?%>
-          <a href="/logout"><input type="submit" value="Logout"></a>
-        <%end%>
+  
          </header>
 
-         <body>
+        <h1>
+          <%if logged_in?%>
+              If you want to see your current pokedex click <a href="/users/<%=current_user.id%>"><input type="submit" value="here"></a><br><br>
+                <%end%>
+        </h1>
+
+
+
+         <body>   
          <% flash.keys.each do |type| %>
             <div data-alert class="flash <%= type %> alert-box radius">
               <%= flash[type] %>
-              <a href='/users/:id' class="close">&times;</a>
+              <a href='/' class="close"><input type="submit" value="Try Again?"></a>
             </div>
           <% end %>
           </body>
-
-
         <%= yield %>
-      
-      
     </div>
-
-
-
 </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -61,4 +50,9 @@
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
   </body>
+            <footer>
+            <%if logged_in?%>
+             <a href="/logout"><input type="submit" value="Logout"></a>
+            <%end%>
+          </footer>
 </html>

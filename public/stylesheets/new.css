@@ -1,7 +1,21 @@
 @media screen {
+   
     
     header{
         font-size: 32px;
+        column-span: all;
+    }
+
+    h1{
+        display: block;
+        font-size: 26px;
+        margin-top: 0.67em;
+        margin-bottom: 0.67em;
+        margin-left: 0;
+        margin-right: 0;
+        font-weight: normal;
+        column-span: all;
+
     }
 
     body {
@@ -12,26 +26,44 @@
       
         /* Center and scale the image nicely */
         position: absolute;
-        bottom: 0;
+        bottom: 0;  
         background-repeat: no-repeat;
         background-position: right 30px;
-        
+        font-size: 22px;       
       }
 
-    .footerWrap {
-        width:100%;
-        position:fixed;
-        bottom: 0px;
-    }
-    .footer {
-        width:400px;
-        margin:auto;
-    }
-    .footerContent {
-        float:left;
-        width:100%;
-        padding:20px 0;
-    }
-    .footer p {float:left; width:100%; text-align:center; }
+      .pokemonlist{
+        font-size: 18px;
+        column-count: 4;
+        column-span: all;
+        column-gap: 20px; 
+      }
+      
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
 
+      .flash{
+        font-size: 16px;
+        width: 600px;
+        padding: 5px;
+        font-weight: bold;
+        margin: 20px;
+        background:#ddd;
+        color:#666;border:1px solid #ccc;
+      }
+
+      footer{
+        width: 100%;
+        height: 28px;
+        border-top: 1px solid #E0E0E0;
+        position: sticky;
+        bottom: 0px; 
+        left: 0px; 
+        text-align: center;
+    }
+    
 }

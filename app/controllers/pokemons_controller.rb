@@ -7,11 +7,11 @@ class PokemonsController < ApplicationController
 
 
        get '/pokemons/new' do 
-        if !logged_in?
-            redirect '/login'
-        else    
-            erb :'pokemons/new'
-        end
+            if !logged_in?
+                redirect '/login'
+            else
+                erb :'pokemons/new'
+            end
        end 
        
        post '/pokemons' do 
@@ -19,8 +19,13 @@ class PokemonsController < ApplicationController
            @pokemon = Pokemon.new(params[:pokemon])
            @pokemon.user_id = session[:user_id]
            @pokemon.save
-
-           redirect "/pokemons/#{@pokemon.id}" 
+            if
+                params[:name].blank? || params[:move].blank? || params[:location].blank?
+                flash[:message] = "Seems like you left something blank"
+                redirect '/pokemons/new' 
+            else
+                redirect "/pokemons/#{@pokemon.id}" 
+            end
        end 
 
        get '/pokemons/:id' do 
@@ -28,8 +33,7 @@ class PokemonsController < ApplicationController
            erb :'pokemons/show'
        end
 
-       get '/pokemons/:id/edit' do 
-        
+       get '/pokemons/:id/edit' do  
            get_pokemon
            redirect_if_not_userized
             erb :'pokemons/edit'
