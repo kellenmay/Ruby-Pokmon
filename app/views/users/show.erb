@@ -6,11 +6,13 @@
 
 
 <h1> Current Pokedex: </h1>
-
+<body>
+<div class="pokemonlist">
     <% @user.pokemons.each do |p| %>
-        <h3><%= p.name %></h3>
+        <%= p.name %><br>
     <% end %> <br>
-
+</div>
+</body>
 
 
  <form action="/users/<%=@user.id%>" method="post">

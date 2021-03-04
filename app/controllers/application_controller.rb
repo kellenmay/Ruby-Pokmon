@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     register Sinatra::Flash
     enable :sessions
-    set :session_secret, 'secret'
+    set :session_secret, 'gogogadget'
   end
 
   get "/" do 

@@ -2,9 +2,13 @@
 <input type="hidden" name="_method" value="patch">
 <label>Update your Pokedex!</label>
 <br>
+<body>
+<div class="pokemonlist">
 <% Pokemon.all.each do |p| %>
     <input type="checkbox" name="user[pokemons_ids][]" id="<%=p.id%>" value="<%=p.id%>" <%='checked' if @user.pokemons.include?(p) %>><%= p.name %><br><%end%>
 <input type="submit" value="Update collection">
+</div>
+</body>
 </form>
 
 

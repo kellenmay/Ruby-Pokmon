@@ -77,8 +77,6 @@ class UsersController < ApplicationController
         pokemons = params[:user][:pokemons_ids].map do |id|
             Pokemon.find_by_id(id)
         end 
-        # binding.pry
-
         @user.pokemons << pokemons
         @user.save
         redirect "/users/#{current_user.id}" 
