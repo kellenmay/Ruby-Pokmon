@@ -28,7 +28,6 @@ class UsersController < ApplicationController
     post '/signup' do 
         user = User.find_by(name: params[:name])
         user_email = User.find_by(email: params[:email])
-
         if params[:name].blank?  || params[:email].blank? || params[:password].blank?
             flash[:message] = "Seems like you left something blank"
             redirect '/signup'
@@ -48,9 +47,9 @@ class UsersController < ApplicationController
         end
 
         @user = User.find_by(id: params[:id])
+        @pokedex = @user.pokemon.flatten
         if !@user.nil? && @user == current_user
             erb :"/users/show"
-
         else
             redirect '/login'
         end
@@ -73,19 +72,27 @@ class UsersController < ApplicationController
 
     patch "/users/:id" do
         @user = User.find_by(id: params[:id])
-        @user.pokemons.clear
+     if @pokemons_ids != nil 
         pokemons = params[:user][:pokemons_ids].map do |id|
             Pokemon.find_by_id(id)
         end 
-        @user.pokemons << pokemons
+    end
+        @user.pokemon << pokemons
         @user.save
+       
         redirect "/users/#{current_user.id}" 
       end 
 
 private 
 
+    def empty_pokedex
+        if params[:user][:pokemons_ids].blank?
+        end
+    end
+    
+
     def redirect_if_not_authorized
-        if @pokemon.creator_id != current_user.id 
+        if @pokemon.user_id != current_user.id 
             flash[:message] = "You can't edit a post you haven't created"
             redirect '/pokemons'
         end
