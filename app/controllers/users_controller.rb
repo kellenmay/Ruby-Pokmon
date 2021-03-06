@@ -41,13 +41,26 @@ class UsersController < ApplicationController
         end
     end
 
+    # get '/users/:id' do 
+    #     if !logged_in?
+    #         redirect '/login'
+    #     end
+
+    #     @user = User.find_by(id: params[:id])
+    #     @pokedex = @user.pokemon.flatten
+    #     if !@user.nil? && @user == current_user
+    #         erb :"/users/show"
+    #     else
+    #         redirect '/login'
+    #     end
+    # end
+
     get '/users/:id' do 
         if !logged_in?
             redirect '/login'
         end
-
         @user = User.find_by(id: params[:id])
-        @pokedex = @user.pokemon.flatten
+        @pokedex = @user.pokemon.flatten.compact
         if !@user.nil? && @user == current_user
             erb :"/users/show"
         else
@@ -70,18 +83,31 @@ class UsersController < ApplicationController
         end
     end
 
+    # patch "/users/:id" do
+    #     @user = User.find_by(id: params[:id])
+    #  if params[:user][:pokemons_ids] != nil 
+    #     pokemons = params[:user][:pokemons_ids].map do |id|
+    #         Pokemon.find_by_id(id)
+    #     end 
+    # end
+    #     @user.pokemon << pokemons
+    #     @user.save
+       
+    #     redirect "/users/#{current_user.id}" 
+    #   end 
+
     patch "/users/:id" do
         @user = User.find_by(id: params[:id])
-     if @pokemons_ids != nil 
+        bag = @user.pokemon
+     if params[:user][:pokemons_ids] != nil 
         pokemons = params[:user][:pokemons_ids].map do |id|
             Pokemon.find_by_id(id)
         end 
     end
-        @user.pokemon << pokemons
+        bag << pokemons
         @user.save
-       
         redirect "/users/#{current_user.id}" 
-      end 
+      end
 
 private 
 
