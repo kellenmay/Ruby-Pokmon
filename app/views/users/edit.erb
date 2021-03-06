@@ -5,7 +5,7 @@
 <body>
 <div class="pokemonlist">
 <% Pokemon.all.each do |p| %>
-    <input type="checkbox" name="user[pokemons_ids][]" id="<%=p.id%>" value="<%=p.id%>" <%='checked' if @user.pokemons.include?(p) %>><%= p.name %><br><%end%>
+    <input type="checkbox" name="user[pokemons_ids][]" id="<%=p.id%>" value="<%=p.id%>" <%='checked' if @user.pokemon.include?(p) %>><%= p.name %><br><%end%>
 <input type="submit" value="Update collection">
 </div>
 </body>
