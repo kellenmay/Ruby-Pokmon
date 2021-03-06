@@ -8,9 +8,13 @@
 <h1> Current Pokedex: </h1>
 <body>
 <div class="pokemonlist">
-    <% @user.pokemons.each do |p| %>
-        <%= p.name %><br>
-    <% end %> <br>
+        <% if !@pokedex.empty?%>
+            <% @pokedex.each do |poke| %>
+                <%= poke.name %><br>
+            <% end %> <br>
+        <% else %>
+                <p> You have no pokemons </p>
+        <% end %>
 </div>
 </body>
 

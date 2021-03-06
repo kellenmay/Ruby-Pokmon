@@ -19,8 +19,9 @@ class PokemonsController < ApplicationController
            @pokemon = Pokemon.new(params[:pokemon])
            @pokemon.user_id = session[:user_id]
            @pokemon.save
-            if
-                params[:name].blank? || params[:move].blank? || params[:location].blank?
+            if params[:pokemon][:name].blank? || params[:pokemon][:move].blank? || params[:pokemon][:location].blank?
+                # binding.pry
+                @pokemon.destroy
                 flash[:message] = "Seems like you left something blank"
                 redirect '/pokemons/new' 
             else
