@@ -6,7 +6,6 @@ Location: <%=@pokemon.location%><br>
 
 <a href="/pokemons"><input type="submit" value="Return to Pokemon list"></a><br><br>
 
-
-<% if @pokemon.user_id == current_user.id %>
+<% if current_user != nil && @pokemon.user_id == current_user.id  %>
 <a href="/pokemons/<%=@pokemon.id%>/edit"><input type="submit" value="edit"> </a>
 <%end%>

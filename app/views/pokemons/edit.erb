@@ -3,7 +3,7 @@
     Name: <input type="text" name="name" value="<%= @pokemon.name %>"><br>
     Move: <input type="text" name="move" value="<%= @pokemon.move %>"><br>
     Location: <input type="text" name="location" value="<%= @pokemon.location %>"><br><br>
-    <input type="submit" value="Edit pokemon"><br><br>
+    <input type="submit" value="Edit Pokemon"><br><br>
 </form>
 
 <form action="/pokemons/<%=@pokemon.id%>" method="post">

@@ -45,8 +45,15 @@ class PokemonsController < ApplicationController
            get_pokemon
            redirect_if_not_userized
            @pokemon.update(name: params[:name], move: params[:move], location: params[:location])
+        if params[:name].blank?  || params[:move].blank? || params[:location].blank?
+            flash[:message] = "Seems like you left something blank"
+            redirect "/pokemons/#{@pokemon.id}/edit"
+        else
+            new_pokemon = Pokemon.new(name: params[:name], move: params[:move], location: params[:location])
+            new_pokemon.save
            redirect "/pokemons/#{@pokemon.id}" 
        end 
+    end
    
 
        delete '/pokemons/:id' do 
