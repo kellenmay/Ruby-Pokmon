@@ -109,6 +109,13 @@ class UsersController < ApplicationController
         redirect "/users/#{current_user.id}" 
       end
 
+
+      delete '/users/:id' do
+        current_user.destroy
+        redirect '/'
+    end
+
+
 private 
 
     def empty_pokedex

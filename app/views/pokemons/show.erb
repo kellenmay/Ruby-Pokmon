@@ -9,3 +9,10 @@ Location: <%=@pokemon.location%><br>
 <% if current_user != nil && @pokemon.user_id == current_user.id  %>
 <a href="/pokemons/<%=@pokemon.id%>/edit"><input type="submit" value="edit"> </a>
 <%end%>
+
+
+
+<form action="/pokemons/<%=@pokemon.id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="delete">
+</form>
